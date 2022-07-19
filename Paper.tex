@@ -645,11 +645,31 @@ Noting additionally that \textbf{extraData} must be at most 32 bytes.
 
 \section{Gas and Payment} \label{ch:payment}
 
-In order to avoid issues of network abuse and to sidestep the inevitable questions stemming from Turing completeness, all programmable computation in Ethereum is subject to fees. The fee schedule is specified in units of \textit{gas} (see Appendix \ref{app:fees} for the fees associated with various computation). Thus any given fragment of programmable computation (this includes creating contracts, making message calls, utilising and accessing account storage and executing operations on the virtual machine) has a universally agreed cost in terms of gas.
+% In order to avoid issues of network abuse and to sidestep the inevitable questions stemming from Turing completeness, all programmable computation in Ethereum is subject to fees. The fee schedule is specified in units of \textit{gas} (see Appendix \ref{app:fees} for the fees associated with various computation). Thus any given fragment of programmable computation (this includes creating contracts, making message calls, utilising and accessing account storage and executing operations on the virtual machine) has a universally agreed cost in terms of gas.
 
-Every transaction has a specific amount of gas associated with it: \textbf{gasLimit}. This is the amount of gas which is implicitly purchased from the sender's account balance. The purchase happens at the according \textbf{gasPrice}, also specified in the transaction. The transaction is considered invalid if the account balance cannot support such a purchase. It is named \textbf{gasLimit} since any unused gas at the end of the transaction is refunded (at the same rate of purchase) to the sender's account. Gas does not exist outside of the execution of a transaction. Thus for accounts with trusted code associated, a relatively high gas limit may be set and left alone.
+% Every transaction has a specific amount of gas associated with it: \textbf{gasLimit}. This is the amount of gas which is implicitly purchased from the sender's account balance. The purchase happens at the according \textbf{gasPrice}, also specified in the transaction. The transaction is considered invalid if the account balance cannot support such a purchase. It is named \textbf{gasLimit} since any unused gas at the end of the transaction is refunded (at the same rate of purchase) to the sender's account. Gas does not exist outside of the execution of a transaction. Thus for accounts with trusted code associated, a relatively high gas limit may be set and left alone.
 
-In general, Ether used to purchase gas that is not refunded is delivered to the \textit{beneficiary} address, the address of an account typically under the control of the miner. Transactors are free to specify any \textbf{gasPrice} that they wish, however miners are free to ignore transactions as they choose. A higher gas price on a transaction will therefore cost the sender more in terms of Ether and deliver a greater value to the miner and thus will more likely be selected for inclusion by more miners. Miners, in general, will choose to advertise the minimum gas price for which they will execute transactions and transactors will be free to canvas these prices in determining what gas price to offer. Since there will be a (weighted) distribution of minimum acceptable gas prices, transactors will necessarily have a trade-off to make between lowering the gas price and maximising the chance that their transaction will be mined in a timely manner.
+% In general, Ether used to purchase gas that is not refunded is delivered to the \textit{beneficiary} address, the address of an account typically under the control of the miner. Transactors are free to specify any \textbf{gasPrice} that they wish, however miners are free to ignore transactions as they choose. A higher gas price on a transaction will therefore cost the sender more in terms of Ether and deliver a greater value to the miner and thus will more likely be selected for inclusion by more miners. Miners, in general, will choose to advertise the minimum gas price for which they will execute transactions and transactors will be free to canvas these prices in determining what gas price to offer. Since there will be a (weighted) distribution of minimum acceptable gas prices, transactors will necessarily have a trade-off to make between lowering the gas price and maximising the chance that their transaction will be mined in a timely manner.
+
+ネットワークの乱用問題を回避し、チューリング完全性に起因する避けられない疑問を回避するために、イーサリアムにおけるすべてのプログラム可能な計算は手数料の対象となる。
+
+料金表はガス単位で指定されている（様々な計算に関連する料金については付録Gを参照）。
+
+したがって、プログラム可能な計算の任意の断片（契約の作成、メッセージ呼び出し、アカウントストレージの利用およびアクセス、仮想マシンでの操作の実行が含まれる）は、ガスという単位で普遍的に合意されたコストを持つことになる。
+
+すべてのトランザクションには、それに関連する特定のガス量、すなわちgasLimitがある。これは、送信者のアカウント残高から暗黙のうちに購入されるガス量である。
+この購入は、取引で指定されたgasPriceで行われる。口座残高がそのような購入をサポートできない場合、取引は無効とみなされる。
+
+取引終了時に未使用のガスがあれば（購入時と同じレートで）送信者のアカウントに払い戻されるため、gasLimitと名付けられた。
+
+ガスはトランザクションの実行の外には存在しない。したがって、信頼できるコードが関連付けられたアカウントでは、比較的高いガスの上限が設定され、そのまま放置されることがあります。
+
+一般に、返金されないガスの購入に使用されたイーサは、受益者アドレス（通常採掘者の管理下にあるアカウントのアドレス）に配信されます。
+取引者は自由にgasPriceを指定することができますが、採掘者は自由に取引を無視することができます。
+
+したがって、トランザクションのガス価格が高いほど、送信者はより多くのイーサを負担し、マイナーに大きな価値を提供することになり、したがって、より多くのマイナーによって包含するために選択される可能性が高くなります。マイナー（採掘者）は一般的に、取引を実行するための最低ガス価格を宣伝することを選択し、トランザクション実行者はどのガス価格を提供するかを決定するために、これらの価格を自由に閲覧することができます。
+
+許容可能な最低ガス価格には（加重）分布があるので、取引者はガス価格を下げることと、自分の取引がタイムリーにマイニングされる可能性を最大化することの間でトレードオフを行う必要があります。
 
 %\subsubsection{Determining Computation Costs}
 
