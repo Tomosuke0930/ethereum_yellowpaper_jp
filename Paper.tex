@@ -1225,18 +1225,22 @@ However, instructions do typically alter one or several components of these valu
 
 \section{Blocktree to Blockchain} \label{ch:ghost}
 
-The canonical blockchain is a path from root to leaf through the entire block tree. In order to have consensus over which path it is, conceptually we identify the path that has had the most computation done upon it, or, the \textit{heaviest} path. Clearly one factor that helps determine the heaviest path is the block number of the leaf, equivalent to the number of blocks, not counting the unmined \hyperlink{Genesis_Block}{genesis block}, in the path. The longer the path, the greater the total mining effort that must have been done in order to arrive at the leaf. This is akin to existing schemes, such as that employed in Bitcoin-derived protocols.
+% The canonical blockchain is a path from root to leaf through the entire block tree. In order to have consensus over which path it is, conceptually we identify the path that has had the most computation done upon it, or, the \textit{heaviest} path. Clearly one factor that helps determine the heaviest path is the block number of the leaf, equivalent to the number of blocks, not counting the unmined \hyperlink{Genesis_Block}{genesis block}, in the path. The longer the path, the greater the total mining effort that must have been done in order to arrive at the leaf. This is akin to existing schemes, such as that employed in Bitcoin-derived protocols.
 
-Since a block header includes the difficulty, the header alone is enough to validate the computation done. Any block contributes toward the total computation or \textit{total difficulty} of a chain.
+% Since a block header includes the difficulty, the header alone is enough to validate the computation done. Any block contributes toward the total computation or \textit{total difficulty} of a chain.
 
-Thus we define the total difficulty of block $B$ recursively as:
+% Thus we define the total difficulty of block $B$ recursively as:
+正規のブロックチェーンは、ブロックツリー全体を通してルートからリーフに至るパスである。どのパスであるかについてコンセンサスを得るために、概念的には、最も多くの計算が行われたパス、つまり最も重いパスを特定します。最も重いパスの判断材料は、明らかにリーフのブロック番号で、これはパスの中の未採掘の生成ブロックを除いたブロック数に相当します。パスが長ければ長いほど、そのリーフに到達するまでに費やされた採掘の総労力は大きくなる。これは、ビットコイン由来のプロトコルで採用されているような既存の方式に似ています。
+ブロックヘッダにはディフィカルティが含まれているため、ヘッダだけで計算を検証することができる。どのブロックもチェーンの総計算量または総難易度に貢献する。
+したがって、ブロックBのtotal difficultyを再帰的に定義する。
+このように、あるブロックBが与えられたとき、Btはその合計difficulty、B0はその親ブロック、Bdはそのdifficultyである。
 \begin{eqnarray}
 B_{\mathrm{t}} & \equiv & B'_{\mathrm{t}} + B_{\mathrm{d}} \\
 B' & \equiv & P(B_{\mathrm{H}})
 \end{eqnarray}
 
-As such given a block $B$, $B_{\mathrm{t}}$ is its total difficulty, $B'$ is its parent block and $B_{\mathrm{d}}$ is its difficulty.
-
+% As such given a block $B$, $B_{\mathrm{t}}$ is its total difficulty, $B'$ is its parent block and $B_{\mathrm{d}}$ is its difficulty.
+このように、ブロックBが与えられたとき、Btはその総難易度、B 0 は はその親ブロック、Bdはその難易度である。
 \section{Block Finalisation} \label{ch:finalisation}
 
 The process of finalising a block involves four stages:
