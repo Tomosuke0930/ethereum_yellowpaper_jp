@@ -1390,15 +1390,31 @@ Mining involves grabbing random slices of the dataset and hashing them together.
 
 \section{Implementing Contracts}
 
-There are several patterns of contracts engineering that allow particular useful behaviours; two of these that we will briefly discuss are data feeds and random numbers.
+% There are several patterns of contracts engineering that allow particular useful behaviours; two of these that we will briefly discuss are data feeds and random numbers.
+
+コントラクトエンジニアリングには、特定の便利な動作を可能にするいくつかのパターンがある。そのうちの2つを簡単に説明すると、データフィードと乱数である。
 
 \subsection{Data Feeds}
-A data feed contract is one which provides a single service: it gives access to information from the external world within Ethereum. The accuracy and timeliness of this information is not guaranteed and it is the task of a secondary contract author---the contract that utilises the data feed---to determine how much trust can be placed in any single data feed.
+% A data feed contract is one which provides a single service: it gives access to information from the external world within Ethereum. The accuracy and timeliness of this information is not guaranteed and it is the task of a secondary contract author---the contract that utilises the data feed---to determine how much trust can be placed in any single data feed.
 
-The general pattern involves a single contract within Ethereum which, when given a message call, replies with some timely information concerning an external phenomenon. An example might be the local temperature of New York City. This would be implemented as a contract that returned that value of some known point in storage. Of course this point in storage must be maintained with the correct such temperature, and thus the second part of the pattern would be for an external server to run an Ethereum node, and immediately on discovery of a new block, creates a new valid transaction, sent to the contract, updating said value in storage. The contract's code would accept such updates only from the identity contained on said server.
+% The general pattern involves a single contract within Ethereum which, when given a message call, replies with some timely information concerning an external phenomenon. An example might be the local temperature of New York City. This would be implemented as a contract that returned that value of some known point in storage. Of course this point in storage must be maintained with the correct such temperature, and thus the second part of the pattern would be for an external server to run an Ethereum node, and immediately on discovery of a new block, creates a new valid transaction, sent to the contract, updating said value in storage. The contract's code would accept such updates only from the identity contained on said server.
+
+データフィード契約は、単一のサービスを提供するものです。それは、イーサリアム内での外部から情報へのアクセスを提供するものです。
+
+この情報の正確性と即時性は保証されておらず、単一のデータフィードにどれだけの信頼を置くことができるかを決定するのは、二次契約作成者（データフィードを利用する契約）の仕事である。
+
+一般的なパターンは、イーサリアム内の単一のコントラクトが、メッセージコールを与えられたときに、外部の現象に関するタイムリーな情報を返信することです。
+
+例えば、ニューヨークの気温のようなものです。これは、ストレージ内のある既知のポイントの値を返すコントラクトとして実装される。もちろん、ストレージ内のこのポイントは正しい温度で維持されなければならない。したがって、パターンの第2部は、外部サーバーがEthereumノードを実行することである。
+ノードを実行し、新しいブロックを発見すると直ちに有効なトランザクションを作成し、コントラクトに送信してストレージ内の値を更新する。コントラクトのコードは、当該サーバーに含まれる ID からのみ、そのような更新を受け入れることになる。
 
 \subsection{Random Numbers}
-Providing random numbers within a deterministic system is, naturally, an impossible task. However, we can approximate with pseudo-random numbers by utilising data which is generally unknowable at the time of transacting. Such data might include the block's hash, the block's timestamp and the block's beneficiary address. In order to make it hard for malicious miners to control those values, one should use the {\small \hyperlink{blockhash}{BLOCKHASH}} operation in order to use hashes of the previous 256 blocks as pseudo-random numbers. For a series of such numbers, a trivial solution would be to add some constant amount and hashing the result.
+% Providing random numbers within a deterministic system is, naturally, an impossible task. However, we can approximate with pseudo-random numbers by utilising data which is generally unknowable at the time of transacting. Such data might include the block's hash, the block's timestamp and the block's beneficiary address. In order to make it hard for malicious miners to control those values, one should use the {\small \hyperlink{blockhash}{BLOCKHASH}} operation in order to use hashes of the previous 256 blocks as pseudo-random numbers. For a series of such numbers, a trivial solution would be to add some constant amount and hashing the result.
+
+決定論的なシステムで乱数を提供することは、当然ながら不可能な作業である。しかし、取引時には一般に知ることができないデータを利用することで、擬似乱数で近似することができます。そのようなデータには、ブロックのハッシュ、ブロックのタイムスタンプ、ブロックの受益者アドレスが含まれるかもしれません。悪意のあるマイナーがこれらの値を制御するのを難しくするために、BLOCKHASH
+オペレーションを使用して、前の256ブロックのハッシュを擬似乱数として使用する必要があります
+
+このような数字の羅列の場合、ある一定量を加算し、その結果をハッシュ化することが明らかな解決策となる。
 
 \section{Future Directions} \label{ch:future}
 
