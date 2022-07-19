@@ -1402,19 +1402,38 @@ Providing random numbers within a deterministic system is, naturally, an impossi
 
 \section{Future Directions} \label{ch:future}
 
-The state database won't be forced to maintain all past state \hyperlink{trie}{trie} structures into the future. It should maintain an age for each node and eventually discard nodes that are neither recent enough nor checkpoints. Checkpoints, or a set of nodes in the database that allow a particular block's state trie to be traversed, could be used to place a maximum limit on the amount of computation needed in order to retrieve any state throughout the blockchain.
+% The state database won't be forced to maintain all past state \hyperlink{trie}{trie} structures into the future. It should maintain an age for each node and eventually discard nodes that are neither recent enough nor checkpoints. Checkpoints, or a set of nodes in the database that allow a particular block's state trie to be traversed, could be used to place a maximum limit on the amount of computation needed in order to retrieve any state throughout the blockchain.
 
-Blockchain consolidation could be used in order to reduce the amount of blocks a client would need to download to act as a full, mining, node. A compressed archive of the trie structure at given points in time (perhaps one in every 10,000th block) could be maintained by the peer network, effectively recasting the \hyperlink{Genesis_Block}{genesis block}. This would reduce the amount to be downloaded to a single archive plus a hard maximum limit  of blocks.
+% Blockchain consolidation could be used in order to reduce the amount of blocks a client would need to download to act as a full, mining, node. A compressed archive of the trie structure at given points in time (perhaps one in every 10,000th block) could be maintained by the peer network, effectively recasting the \hyperlink{Genesis_Block}{genesis block}. This would reduce the amount to be downloaded to a single archive plus a hard maximum limit  of blocks.
 
-Finally, blockchain compression could perhaps be conducted: nodes in state trie that haven't sent/received a transaction in some constant amount of blocks could be thrown out, reducing both Ether-leakage and the growth of the state database.
+% Finally, blockchain compression could perhaps be conducted: nodes in state trie that haven't sent/received a transaction in some constant amount of blocks could be thrown out, reducing both Ether-leakage and the growth of the state database.
+
+状態データベースは、過去のすべての状態ツリー構造を将来にわたって維持することを強制されることはないだろう。各ノードの年齢を維持し、最終的には十分新しいものでもチェックポイントでもないノードを破棄する。チェックポイント、または特定のブロックの状態ツリーをトラバースすることを可能にするデータベース内のノードのセットは、ブロックチェーン全体の任意の状態を取得するために必要な計算量に最大制限を設けるために使用される可能性があります。
+
+ブロックチェーンの統合は、クライアントが完全な採掘ノードとして機能するためにダウンロードする必要があるブロックの量を減らすために使用される可能性があります。
+ある時点のツリー構造の圧縮アーカイブ（おそらく10,000ブロックに1つ）をピアネットワークで維持し、ジェネシスブロックを効果的に再作成することが可能である。これにより、ダウンロードする量を1つのアーカイブに加え、ブロックのハード的な最大制限に減らすことができます。
+
+最後に、ブロックチェーンの圧縮はおそらく実施可能である：ある一定量のブロックでトランザクションを送信/受信していない状態トライのノードは捨てられ、Ether-leakageと状態データベースの成長の両方が減少する可能性がある。
 
 \subsection{Scalability}
 
-Scalability remains an eternal concern. With a generalised state transition function, it becomes difficult to partition and parallelise transactions to apply the divide-and-conquer strategy. Unaddressed, the dynamic value-range of the system remains essentially fixed and as the average transaction value increases, the less valuable of them become ignored, being economically pointless to include in the main ledger. However, several strategies exist that may potentially be exploited to provide a considerably more scalable protocol.
+% Scalability remains an eternal concern. With a generalised state transition function, it becomes difficult to partition and parallelise transactions to apply the divide-and-conquer strategy. Unaddressed, the dynamic value-range of the system remains essentially fixed and as the average transaction value increases, the less valuable of them become ignored, being economically pointless to include in the main ledger. However, several strategies exist that may potentially be exploited to provide a considerably more scalable protocol.
 
-Some form of hierarchical structure, achieved by either consolidating smaller lighter-weight chains into the main block or building the main block through the incremental combination and adhesion (through proof-of-work) of smaller transaction sets may allow parallelisation of transaction combination and block-building. Parallelism could also come from a prioritised set of parallel blockchains, consolidating each block and with duplicate or invalid transactions thrown out accordingly.
+% Some form of hierarchical structure, achieved by either consolidating smaller lighter-weight chains into the main block or building the main block through the incremental combination and adhesion (through proof-of-work) of smaller transaction sets may allow parallelisation of transaction combination and block-building. Parallelism could also come from a prioritised set of parallel blockchains, consolidating each block and with duplicate or invalid transactions thrown out accordingly.
 
-Finally, verifiable computation, if made generally available and efficient enough, may provide a route to allow the proof-of-work to be the verification of final state.
+% Finally, verifiable computation, if made generally available and efficient enough, may provide a route to allow the proof-of-work to be the verification of final state.
+
+スケーラビリティは永遠の悩みである。
+
+一般化された状態遷移の関数では、分割して統治を行う戦略を適用するためにトランザクションを分割し並列化することが困難になる。未対策のままでは、システムの動的な価値範囲は基本的に固定されたままであり、平均的な取引額が増加するにつれて、価値の低い取引は無視され、メインの台帳に含めることが経済的に無意味になる。
+
+しかし、よりスケーラブルなプロトコルを提供するために、潜在的に利用できる可能性のある戦略がいくつか存在する。
+
+軽量な小さなチェーンをメインブロックに統合するか、あるいは（プルーフ・オブ・ワークを通じて）小さな取引セットを段階的に組み合わせて結合し、メインブロックを構築することで、何らかの形で階層構造を実現し、取引の組み合わせとブロック構築を並列化することができるかもしれません。
+
+並列性は、優先順位をつけた並列ブロックチェーンのセットから生まれる可能性もあり、各ブロックを統合し、重複する取引や無効な取引はそれに応じて排除される。
+
+最後に、検証可能な計算が一般的に利用可能で十分に効率的であれば、プルーフ・オブ・ワークを最終状態の検証として利用できるようになる可能性がある。
 
 \section{Conclusion} \label{ch:conclusion}
 
